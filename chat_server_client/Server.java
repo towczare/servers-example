@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.InputStream;
@@ -40,7 +41,7 @@ public class Server {
 
       // get nickname of newUser
       String nickname = (new Scanner ( client.getInputStream() )).nextLine();
-      nickname = nickname.replace(",", ""); //  ',' use for serialisation
+      nickname = nickname.replace(",", ""); //  ',' use for serialization
       nickname = nickname.replace(" ", "_");
       System.out.println("New Client: \"" + nickname + "\"\n\t     Host:" + client.getInetAddress().getHostAddress());
 
@@ -130,8 +131,8 @@ class UserHandler implements Runnable {
       message = message.replace(":o", "<img src='http://1.bp.blogspot.com/-MB8OSM9zcmM/TvitChHcRRI/AAAAAAAAAiE/kdA6RbnbzFU/s400/surprised%2Bemoticon.png'>");
       message = message.replace(":O", "<img src='http://1.bp.blogspot.com/-MB8OSM9zcmM/TvitChHcRRI/AAAAAAAAAiE/kdA6RbnbzFU/s400/surprised%2Bemoticon.png'>");
 
-      // Gestion des messages private
-      if (message.charAt(0) == '@'){
+      // Init private msg
+      if (isPrivate(message)){
         if(message.contains(" ")){
           System.out.println("private msg : " + message);
           int firstSpace = message.indexOf(" ");
@@ -143,8 +144,8 @@ class UserHandler implements Runnable {
               );
         }
 
-      // Gestion du changement
-      }else if (message.charAt(0) == '#'){
+      // Change color
+      }else if (shouldChangeColor(message)){
         user.changeColor(message);
         // update color for all other users
         this.server.broadcastAllUsers();
@@ -157,6 +158,18 @@ class UserHandler implements Runnable {
     server.removeUser(user);
     this.server.broadcastAllUsers();
     sc.close();
+  }
+
+  private boolean shouldChangeColor(String message) {
+    return message != null && !message.equals("") && startsWithSymbol(message, '#');
+  }
+
+  private boolean isPrivate(String message) {
+    return message != null && !message.equals("") && startsWithSymbol(message, '@');
+  }
+
+  private boolean startsWithSymbol(String string, Character symbol) {
+    return string.charAt(0) == symbol;
   }
 }
 
