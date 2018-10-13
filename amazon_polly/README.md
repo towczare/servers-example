@@ -20,3 +20,13 @@ Set up:
 Here is list of available voices in AWS Polly service https://docs.aws.amazon.com/polly/latest/dg/voicelist.html
 * SAMPLE - phrase which is going to synthesized.
 * BREATH_TAGS - we added additional tags which allows you to modify output. You can read more about it here: https://aws.amazon.com/blogs/machine-learning/amazon-polly-releases-new-ssml-breath-feature/
+
+# Exercise
+
+1. Modify, PollyDemo to work more like chat app.
+2. This should work like following:
+* Program asks user for name of voice which should be used. e.g.
+  > Maja
+* Now program asks, what Maja should tell you. E.g.
+> Jestem Maja pszczółka Maja
+* Now sound should be generated and played, and whole process should repeat, to let user choose new voice and sentence.
