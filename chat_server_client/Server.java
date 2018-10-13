@@ -207,7 +207,7 @@ class User {
         return;
       }
       this.color = hexColor;
-      this.getOutStream().println("<b>Color changed successfully</b> " + this.toString());
+      this.getOutStream().println("<b>Color changed successfully Lord!</b> " + this.toString());
       return;
     }
     this.getOutStream().println("<b>Failed to change color</b>");

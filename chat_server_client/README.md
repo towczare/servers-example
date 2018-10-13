@@ -32,6 +32,7 @@ Fork of original project https://github.com/Drakirus/java-chat
 /command
 ```
 4. List of commands to implement
+
 | command | server response |
 |---------|-----------------|
 | /time | Server should print current time in console |
