@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -71,9 +72,16 @@ public class Server {
   // send incoming msg to all Users
   public void broadcastMessages(String msg, User userSender) {
     for (User client : this.clients) {
-      client.getOutStream().println(
-          userSender.toString() + "<span>: " + msg+"</span>");
+            client.getOutStream().println(
+                    userSender.toString() + "<span>: " + msg + "</span>");
     }
+  }
+
+  public void broadcastResponseCommand(String command) {
+      for (User client : this.clients) {
+          client.getOutStream().println(
+                  Bot.executeCommand(command));
+      }
   }
 
   // send list of clients to all Users
@@ -143,21 +151,26 @@ class UserHandler implements Runnable {
                 ), user, userPrivate
               );
         }
-
       // Change color
-      }else if (shouldChangeColor(message)){
+      }else if (shouldChangeColor(message)) {
         user.changeColor(message);
         // update color for all other users
         this.server.broadcastAllUsers();
-      }else{
+      }else if(shouldExecuteBotCommand(message)) {
+        server.broadcastResponseCommand(message);
+    }else{
         // update user list
         server.broadcastMessages(message, user);
       }
     }
-    // end of Thread
+  // end of Thread
     server.removeUser(user);
     this.server.broadcastAllUsers();
     sc.close();
+  }
+
+  private boolean shouldExecuteBotCommand(String message) {
+    return message != null && !message.equals("") && startsWithSymbol(message, '/');
   }
 
   private boolean shouldChangeColor(String message) {
@@ -233,6 +246,12 @@ class User {
       +"'>" + this.getNickname() + "</span></u>";
 
   }
+}
+
+class Bot {
+    public static String executeCommand(String command) {
+        return "<u><span'>BOT</span></u>" + "<span>: I Have no idea what to do!</span>";
+    }
 }
 
 class ColorInt {

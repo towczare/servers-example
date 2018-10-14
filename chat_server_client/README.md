@@ -35,11 +35,11 @@ Fork of original project https://github.com/Drakirus/java-chat
 
 | command | server response |
 |---------|-----------------|
-| /time | Server should print current time in console |
-| /count 5 | Server should print number starting from 1 then 2 .. 3 .. 4 .. 5 with some delay like second |
-| /${ANIMAL} | Print mentioned animal in ascii art. You can find some examples here: https://1lineart.kulaone.com/#/ example below|
-| /fish | ><> |
-| /emoji | Every mature chat server needs emoji nowadays. Implement couple of examples allowing you to present them in rich client version. |
+| `/time` | Server should print current time in console |
+| `/count 5` | Server should print number starting from 1 then 2 .. 3 .. 4 .. 5 with some delay like second |
+| `/${ANIMAL}` | Print mentioned animal in ascii art. You can find some examples here: https://1lineart.kulaone.com/#/ example below|
+| `/fish` | ><> |
+| `/emoji` | Every mature chat server needs emoji nowadays. Implement couple of examples allowing you to present them in rich client version. |
 
 
 

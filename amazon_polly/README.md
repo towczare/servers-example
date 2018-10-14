@@ -30,3 +30,11 @@ Here is list of available voices in AWS Polly service https://docs.aws.amazon.co
 * Now program asks, what Maja should tell you. E.g.
 > Jestem Maja pszczółka Maja
 * Now sound should be generated and played, and whole process should repeat, to let user choose new voice and sentence.
+3. Following snippet might be usefull:
+```java
+String s; 
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter a string"); 
+s = sc.nextLine();  
+System.out.println("You entered String "+s);
+```

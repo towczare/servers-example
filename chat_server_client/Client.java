@@ -6,7 +6,6 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
-import java.io.StringReader;
 
 public class Client {
 
